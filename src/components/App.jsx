@@ -10,13 +10,28 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = contact => {
     const isExitName = this.state.contacts.some(
       prevContact => prevContact.name === contact.name
     );
 
     if (isExitName) {
-      alert(`this contact ${contact.name} is`);
+      alert(`A contact with the name ${contact.name} already exists`);
       return;
     }
 
@@ -25,7 +40,7 @@ class App extends Component {
     );
 
     if (isExitNumber) {
-      alert(`this contact ${contact.number} is`);
+      alert(`The phone number ${contact.number}  already exists`);
       return;
     }
 
