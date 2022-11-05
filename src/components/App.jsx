@@ -1,32 +1,21 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from '../components/ContactForm';
 import ContactList from '../components/ContactList';
 import Filter from '../components/Filter';
 
-class App extends Component {
-  state = {
-    contacts: [],
-    filter: '',
-  };
+export default function App() {
+  const [contacts, setContacts] = useState(
+    JSON.parse(localStorage.getItem('contacts')) ?? []
+  );
+  const [filter, setFilter] = useState('');
 
-  componentDidMount() {
-    const contacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(contacts);
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
-  addContact = contact => {
-    const isExitName = this.state.contacts.some(
+  const addContact = contact => {
+    const isExitName = contacts.some(
       prevContact => prevContact.name === contact.name
     );
 
@@ -35,7 +24,7 @@ class App extends Component {
       return;
     }
 
-    const isExitNumber = this.state.contacts.some(
+    const isExitNumber = contacts.some(
       prevContact => prevContact.number === contact.number
     );
 
@@ -48,24 +37,10 @@ class App extends Component {
       id: nanoid(),
       ...contact,
     };
-
-    this.setState(({ contacts }) => ({
-      contacts: [...contacts, newContact],
-    }));
+    setContacts([...contacts, newContact]);
   };
 
-  deleteContact = id => {
-    this.setState({
-      contacts: this.state.contacts.filter(contact => contact.id !== id),
-    });
-  };
-
-  changeFilter = e => {
-    this.setState({ filter: e.target.value });
-  };
-
-  getVisibleContacts = () => {
-    const { contacts, filter } = this.state;
+  const getVisibleContacts = () => {
     const normalizeFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
@@ -73,24 +48,24 @@ class App extends Component {
     );
   };
 
-  render() {
-    const { filter } = this.state;
+  const deleteContact = id => {
+    setContacts(contacts.filter(contact => contact.id !== id));
+  };
 
-    const { addContact, changeFilter, getVisibleContacts, deleteContact } =
-      this;
+  const changeFilter = e => {
+    setFilter(e.target.value);
+  };
 
-    const visibleContacts = getVisibleContacts();
-
-    return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm addContact={addContact} />
-        <h2>Contacts</h2>
-        <Filter value={filter} onChange={changeFilter} />
-        <ContactList contacts={visibleContacts} deleteContact={deleteContact} />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Phonebook</h1>
+      <ContactForm addContact={addContact} />
+      <h2>Contacts</h2>
+      <Filter value={filter} onChange={changeFilter} />
+      <ContactList
+        contacts={getVisibleContacts()}
+        deleteContact={deleteContact}
+      />
+    </div>
+  );
 }
-
-export default App;
