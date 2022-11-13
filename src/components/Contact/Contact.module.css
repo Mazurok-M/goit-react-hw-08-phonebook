@@ -1,0 +1,10 @@
+.btn__delete {
+  padding: 2px 10px;
+  margin-left: 15px;
+
+  cursor: pointer;
+  color: #f5f5f5;
+  background-color: rgb(59, 59, 243);
+  border-color: rgb(4, 4, 92);
+  border-radius: 4px;
+}

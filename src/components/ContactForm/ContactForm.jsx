@@ -1,40 +1,26 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact, getContacts } from 'redux/contactsSlice';
+
 import css from './ContactForm.module.css';
 
-export default function ContactForm({ addContact }) {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-
-    switch (name) {
-      case 'name':
-        setName(value);
-
-        return;
-      case 'number':
-        setNumber(value);
-
-        return;
-
-      default:
-        return;
-    }
-  };
+export const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    addContact({ name: name, number: number });
+    const form = e.target;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value;
 
-    reset();
-  };
+    if (contacts.some(contact => contact.name === name)) {
+      alert(`A contact with the name ${name} already exists`);
+      return;
+    }
+    dispatch(addContact(name, number));
 
-  const reset = () => {
-    setName('');
-    setNumber('');
+    form.reset();
   };
 
   return (
@@ -48,8 +34,6 @@ export default function ContactForm({ addContact }) {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          onChange={handleChange}
-          value={name}
         />
       </label>
       <label className={css.form__label}>
@@ -61,8 +45,6 @@ export default function ContactForm({ addContact }) {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          onChange={handleChange}
-          value={number}
         />
       </label>
       <button className={css.form__btn} type="submit">
@@ -70,8 +52,4 @@ export default function ContactForm({ addContact }) {
       </button>
     </form>
   );
-}
-
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
 };
