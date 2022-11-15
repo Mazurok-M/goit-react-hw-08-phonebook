@@ -1,23 +1,11 @@
-// import PropTypes from 'prop-types';
 import { Contact } from 'components/Contact/Contact';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/contactsSlice';
-import { getFilter } from 'redux/filterSlice';
+import { selectFilterContacts } from 'redux/selectors';
 
 import css from './contactList.module.css';
 
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
-
-  const getFilterContacts = () => {
-    const normalizeFilter = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalizeFilter)
-    );
-  };
-
-  const filterContacts = getFilterContacts();
+  const filterContacts = useSelector(selectFilterContacts);
 
   return (
     <div>
