@@ -68,7 +68,3 @@ const operations = {
 };
 
 export default operations;
-
-// logOut,
-// logIn,
-// fetchCurrentUser,

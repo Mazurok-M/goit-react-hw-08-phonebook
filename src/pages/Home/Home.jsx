@@ -1,7 +1,11 @@
+import css from './Home.module.css';
+
 const Home = () => {
-  <div>
-    <h1> Вітаємо на нашому сервісі</h1>
-  </div>;
+  return (
+    <div className={css.container}>
+      <h1 className={css.title}> Вітаємо на нашому сервісі</h1>
+    </div>
+  );
 };
 
 export default Home;
