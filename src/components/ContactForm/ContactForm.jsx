@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/contacts/contacts-operations';
+import { selectContacts } from 'redux/contacts/contacts-selectors';
 
 import css from './ContactForm.module.css';
 
@@ -13,13 +13,13 @@ export const ContactForm = () => {
 
     const form = e.target;
     const name = form.elements.name.value;
-    const phone = form.elements.number.value;
+    const number = form.elements.number.value;
 
     if (contacts.some(contact => contact.name === name)) {
       alert(`A contact with the name ${name} already exists`);
       return;
     }
-    dispatch(addContact(name, phone));
+    dispatch(addContact(name, number));
 
     form.reset();
   };
