@@ -36,7 +36,8 @@ export const ContactForm = () => {
     }
     dispatch(addContact({ name, number }));
 
-    form.reset();
+    setName('');
+    setNumber('');
   };
 
   return (

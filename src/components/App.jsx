@@ -8,23 +8,9 @@ import Container from './Container/Container';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-// import {
-//   selectError,
-//   selectIsLoading,
-// } from 'redux/contacts/contacts-selectors';
-// import { fetchContacts } from 'redux/contacts/contacts-operations';
-
-// import { fetchContacts } from 'redux/operations';
-// import { selectError, selectIsLoading } from 'redux/selectors';
-
-// import { ContactForm } from './ContactForm/ContactForm';
-// import { ContactList } from './ContactList/ContactList';
-// import { Filter } from './Filter/Filter';
 
 export const App = () => {
   const dispatch = useDispatch();
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
@@ -42,13 +28,3 @@ export const App = () => {
     </Container>
   );
 };
-
-// <div>
-// <h1>Phonebook</h1>
-// <ContactForm />
-// <h2>Contacts</h2>
-// <Filter />
-// {isLoading && !error && <b> Loading...</b>}
-// {error && <b>{error}</b>}
-// <ContactList />
-// </div>
