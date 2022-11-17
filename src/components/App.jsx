@@ -5,8 +5,14 @@ import Login from 'pages/Login/Login';
 import Register from 'pages/Register/Register';
 import AppBar from './AppBar/AppBar';
 import Container from './Container/Container';
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
+// import {
+//   selectError,
+//   selectIsLoading,
+// } from 'redux/contacts/contacts-selectors';
+// import { fetchContacts } from 'redux/contacts/contacts-operations';
 
 // import { fetchContacts } from 'redux/operations';
 // import { selectError, selectIsLoading } from 'redux/selectors';
@@ -16,13 +22,13 @@ import Container from './Container/Container';
 // import { Filter } from './Filter/Filter';
 
 export const App = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const isLoading = useSelector(selectIsLoading);
   // const error = useSelector(selectError);
 
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
 
   return (
     <Container>

@@ -27,6 +27,8 @@ export const addContact = createAsyncThunk(
   }
 );
 
+// { body: { 'Content-Type': 'application/json' } }
+
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (id, thunkAPI) => {
