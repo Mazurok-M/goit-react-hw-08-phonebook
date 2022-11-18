@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
 import { authOperations } from 'redux/auth';
 
 const Register = () => {
@@ -31,9 +32,46 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Сторінка реєстрації</h1>
+      <h1>Registration page</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="name"
+            name="name"
+            placeholder="Enter name"
+            value={name}
+            onChange={handleChange}
+          />
+        </Form.Group>
 
-      <form onSubmit={handleSubmit} autoComplete="off">
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Register
+        </Button>
+      </Form>
+      {/* <form onSubmit={handleSubmit} autoComplete="off">
         <label>
           Ім'я
           <input type="name" name="name" value={name} onChange={handleChange} />
@@ -57,7 +95,7 @@ const Register = () => {
           />
         </label>
         <button type="submit">Зареєструватись</button>
-      </form>
+      </form> */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
-import css from './Contact.module.css';
+import { Button, Wrap, Name } from './Contact.styled';
 import { deleteContact } from 'redux/contacts/contacts-operations';
 
 export const Contact = ({ contact }) => {
@@ -9,13 +9,15 @@ export const Contact = ({ contact }) => {
   const handleDelete = () => dispatch(deleteContact(contact.id));
 
   return (
-    <div>
-      <span className={css.name}>{contact.name}</span>:
-      <span className={css.number}> {contact.number}</span>
-      <button className={css.btn__delete} type="button" onClick={handleDelete}>
+    <Wrap>
+      <Name>
+        <span>{contact.name}</span>:<span> {contact.number}</span>
+      </Name>
+
+      <Button type="button" onClick={handleDelete}>
         Delete
-      </button>
-    </div>
+      </Button>
+    </Wrap>
   );
 };
 

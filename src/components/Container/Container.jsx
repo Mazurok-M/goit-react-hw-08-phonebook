@@ -1,5 +1,5 @@
-// import css from './Container.css';
+import { Box } from './Container.styled';
 
 export default function Container({ children }) {
-  return <div>{children}</div>;
+  return <Box>{children}</Box>;
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
 import { authOperations } from 'redux/auth';
 
 const Login = () => {
@@ -28,7 +29,40 @@ const Login = () => {
   return (
     <div>
       <h1>Сторінка логіна</h1>
-      <form onSubmit={handleSubmit} autoComplete="off">
+      <Form onSubmit={handleSubmit} autoComplete="off">
+        <Form.Group className="mb-3">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
+    </div>
+  );
+};
+
+export default Login;
+
+/* <form onSubmit={handleSubmit} autoComplete="off">
         <label>
           Почта
           <input
@@ -48,9 +82,4 @@ const Login = () => {
           />
         </label>
         <button type="submit">Війти</button>
-      </form>
-    </div>
-  );
-};
-
-export default Login;
+      </form> */
