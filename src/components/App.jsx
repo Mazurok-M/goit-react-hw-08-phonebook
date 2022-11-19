@@ -14,6 +14,7 @@ import PublicRoute from './PublicRoute';
 // import { useState } from 'react';
 import Layout from './Layout/Layout';
 import NotFound from 'pages/NotFound/NotFound';
+import Loader from './Loader/Loader';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Register = lazy(() => import('../pages/Register/Register'));
@@ -24,7 +25,6 @@ export const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrent = useSelector(authSelectors.getIsFetchingCurrent);
 
-  console.log(isFetchingCurrent);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
@@ -32,7 +32,7 @@ export const App = () => {
   return (
     <Container>
       {isFetchingCurrent ? (
-        <h1>Loading</h1>
+        <Loader />
       ) : (
         <Routes>
           <Route path="/" element={<Layout />}>

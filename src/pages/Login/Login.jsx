@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { authOperations } from 'redux/auth';
+import css from './Login.module.css';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,9 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Сторінка логіна</h1>
-      <Form onSubmit={handleSubmit} autoComplete="off">
+    <div className={css.wrap}>
+      <h1 className={css.form_title}>Enter your login</h1>
+      <Form onSubmit={handleSubmit} autoComplete="off" className={css.form}>
         <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -52,7 +53,7 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className={css.button_form}>
           Login
         </Button>
       </Form>

@@ -4,8 +4,8 @@ import { NavItem, Wrap } from './AuthNav.styled';
 export default function AuthNav() {
   return (
     <Wrap>
-      <NavItem to="/register">Реєстрація</NavItem>
-      <NavItem to="/login">Логін</NavItem>
+      <NavItem to="/register">Register</NavItem>
+      <NavItem to="/login">Login</NavItem>
     </Wrap>
   );
 }

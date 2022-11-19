@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
 import { authOperations } from 'redux/auth';
+import css from './Register.module.css';
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -31,9 +32,9 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <h1>Registration page</h1>
-      <Form onSubmit={handleSubmit}>
+    <div className={css.wrap}>
+      <h1 className={css.form_title}>Registration page</h1>
+      <Form className={css.form} onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -67,7 +68,7 @@ const Register = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" className={css.button_form}>
           Register
         </Button>
       </Form>
