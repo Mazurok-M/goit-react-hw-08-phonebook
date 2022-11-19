@@ -33,17 +33,17 @@ const logIn = createAsyncThunk(
       token.set(data.token);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return error;
     }
   }
 );
 
-const logOut = createAsyncThunk('auth/logout', async ({ rejectWithValue }) => {
+const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
     token.unset();
   } catch (error) {
-    return rejectWithValue(error.message);
+    return error;
   }
 });
 
