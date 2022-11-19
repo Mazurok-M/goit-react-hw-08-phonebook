@@ -1,17 +1,11 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import Contacts from 'pages/Contacts/Contacts';
-// import Home from 'pages/Home/Home';
-// import Login from 'pages/Login/Login';
-// import Register from 'pages/Register/Register';
-// import AppBar from './AppBar/AppBar';
 import Container from './Container/Container';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authOperations, authSelectors } from 'redux/auth';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-// import { useState } from 'react';
 import Layout from './Layout/Layout';
 import NotFound from 'pages/NotFound/NotFound';
 import Loader from './Loader/Loader';

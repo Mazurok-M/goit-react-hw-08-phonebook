@@ -62,25 +62,3 @@ const Login = () => {
 };
 
 export default Login;
-
-/* <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Війти</button>
-      </form> */

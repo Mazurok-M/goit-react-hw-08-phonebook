@@ -1,14 +1,16 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form } from 'react-bootstrap';
-import { authOperations } from 'redux/auth';
+import { authOperations, authSelectors } from 'redux/auth';
 import css from './Register.module.css';
+import Notiflix from 'notiflix';
 
 const Register = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const error = useSelector(authSelectors.getError);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -34,6 +36,7 @@ const Register = () => {
   return (
     <div className={css.wrap}>
       <h1 className={css.form_title}>Registration page</h1>
+      {error && Notiflix.Notify.failure('Oops, something went wrong')}
       <Form className={css.form} onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
@@ -72,31 +75,6 @@ const Register = () => {
           Register
         </Button>
       </Form>
-      {/* <form onSubmit={handleSubmit} autoComplete="off">
-        <label>
-          Ім'я
-          <input type="name" name="name" value={name} onChange={handleChange} />
-        </label>
-        <label>
-          Почта
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Пароль
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Зареєструватись</button>
-      </form> */}
     </div>
   );
 };

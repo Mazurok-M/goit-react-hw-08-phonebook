@@ -9,7 +9,4 @@ export const Box = styled.div`
     rgba(67, 29, 92, 1) 50%,
     rgba(6, 10, 22, 1) 100%
   );
-
-  /* padding-left: 15px;
-  padding-right: 15px; */
 `;

@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { NavItem, Wrap } from './AuthNav.styled';
 
 export default function AuthNav() {

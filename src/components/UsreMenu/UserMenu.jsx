@@ -10,7 +10,7 @@ export default function UserMenu() {
     <div>
       <span>Welcome, {name}</span>
       <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        Exit
+        Logout
       </Button>
     </div>
   );
